@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: postgres:16
+  redis:
+    image: redis:7
+  backend:
+    build: ./backend
+    ports: ["8000:8000"]
+  frontend:
+    build: ./frontend
+    ports: ["5173:5173"]
