@@ -1,0 +1,57 @@
+{
+  "_description": "Synthetic alert ingestion examples — one per cloud provider, plus the normalized output schema",
+
+  "aws_guardduty_input": {
+    "source": "aws",
+    "raw": {
+      "detail-type": "GuardDuty Finding",
+      "detail": {
+        "type": "UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom",
+        "severity": 8.0,
+        "resource": {
+          "resourceType": "AccessKey",
+          "accessKeyDetails": { "userName": "deploy-bot" }
+        }
+      }
+    }
+  },
+
+  "azure_sentinel_input": {
+    "source": "azure",
+    "raw": {
+      "properties": {
+        "alertDisplayName": "Brute-force attack against Azure AD",
+        "severity": "High",
+        "compromisedEntity": "admin@contoso.com",
+        "tactics": ["CredentialAccess"]
+      }
+    }
+  },
+
+  "gcp_scc_input": {
+    "source": "gcp",
+    "raw": {
+      "finding": {
+        "category": "OPEN_FIREWALL",
+        "severity": "HIGH",
+        "resourceName": "//compute.googleapis.com/projects/prod-1/global/firewalls/allow-all",
+        "indicator": { "ipAddresses": ["0.0.0.0/0"] }
+      }
+    }
+  },
+
+  "normalized_output": {
+    "alert_id": "alt-20260521-a7f3",
+    "source": "aws",
+    "provider_alert_id": "gd-9bc2e1f4",
+    "title": "Unauthorized IAM access from malicious IP",
+    "severity": "high",
+    "status": "new",
+    "mitre_tactic": "Initial Access",
+    "mitre_technique": "T1078",
+    "asset_id": "ast-iam-deploy-bot",
+    "ioc_values": ["198.51.100.44"],
+    "raw_event": { "...": "original payload preserved" },
+    "created_at": "2026-05-21T14:32:00Z"
+  }
+}

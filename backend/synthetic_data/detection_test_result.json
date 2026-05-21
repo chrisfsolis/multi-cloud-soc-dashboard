@@ -1,0 +1,20 @@
+{
+  "_description": "Synthetic detection rule test result — rule matched 5 alerts within time window",
+
+  "rule_id": "det-001",
+  "matched": true,
+  "matched_alerts": [
+    "alt-20260521-a7f3",
+    "alt-20260521-b2c1",
+    "alt-20260521-c9d4",
+    "alt-20260521-d1e8",
+    "alt-20260521-e5f2"
+  ],
+  "asset_id": "ast-iam-deploy-bot",
+  "window": {
+    "start": "2026-05-21T14:22:00Z",
+    "end": "2026-05-21T14:30:00Z"
+  },
+  "action_taken": "incident_created",
+  "incident_id": "inc-20260521-001"
+}

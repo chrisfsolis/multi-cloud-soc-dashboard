@@ -1,0 +1,29 @@
+{
+  "_description": "Synthetic alert enrichment — threat intel, asset context, and geolocation",
+
+  "alert_id": "alt-20260521-a7f3",
+  "enrichments": {
+    "threat_intel": {
+      "ip": "198.51.100.44",
+      "reputation": "malicious",
+      "threat_type": "C2 Server",
+      "malware_family": "Cobalt Strike",
+      "first_seen": "2026-03-12",
+      "feeds_matched": ["AlienVault OTX", "Abuse.ch", "CrowdStrike Falcon"]
+    },
+    "asset_context": {
+      "asset_id": "ast-iam-deploy-bot",
+      "owner": "platform-team@company.com",
+      "environment": "production",
+      "criticality": "high",
+      "last_rotation": "2026-02-15T00:00:00Z",
+      "open_alerts_count": 12
+    },
+    "geo": {
+      "country": "RU",
+      "city": "Saint Petersburg",
+      "asn": "AS12345 — Bulletproof Hosting Inc."
+    }
+  },
+  "enriched_at": "2026-05-21T14:40:00Z"
+}
