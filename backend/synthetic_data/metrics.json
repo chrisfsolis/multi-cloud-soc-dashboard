@@ -1,0 +1,30 @@
+{
+  "_description": "Synthetic SOC metrics — overview KPIs and top risky assets",
+
+  "overview": {
+    "period": { "from": "2026-05-01", "to": "2026-05-21" },
+    "total_alerts": 1847,
+    "total_incidents": 42,
+    "open_incidents": 7,
+    "critical_incidents": 3,
+    "mttd_minutes": 4.2,
+    "mtta_minutes": 12.8,
+    "mttr_hours": 3.6,
+    "false_positive_rate": 0.18,
+    "alerts_by_provider": { "aws": 892, "azure": 614, "gcp": 341 },
+    "alerts_by_severity": { "critical": 89, "high": 412, "medium": 831, "low": 515 },
+    "top_mitre_techniques": [
+      { "technique": "T1078 — Valid Accounts", "count": 187 },
+      { "technique": "T1110 — Brute Force", "count": 143 },
+      { "technique": "T1562 — Impair Defenses", "count": 98 }
+    ]
+  },
+
+  "top_risky_assets": [
+    { "asset_id": "ast-iam-deploy-bot", "name": "deploy-bot (IAM)", "provider": "aws", "risk_score": 92, "open_alerts": 12, "open_incidents": 2 },
+    { "asset_id": "ast-vm-prod-web-03", "name": "prod-web-03 (EC2)", "provider": "aws", "risk_score": 85, "open_alerts": 8, "open_incidents": 1 },
+    { "asset_id": "ast-az-sql-primary", "name": "sql-primary (Azure SQL)", "provider": "azure", "risk_score": 78, "open_alerts": 5, "open_incidents": 1 },
+    { "asset_id": "ast-gcp-fw-allow-all", "name": "allow-all (GCP Firewall)", "provider": "gcp", "risk_score": 71, "open_alerts": 3, "open_incidents": 0 },
+    { "asset_id": "ast-az-blob-public", "name": "public-uploads (Blob)", "provider": "azure", "risk_score": 68, "open_alerts": 4, "open_incidents": 1 }
+  ]
+}

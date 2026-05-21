@@ -1,0 +1,35 @@
+{
+  "_description": "Synthetic playbook definition and execution run with step-level status",
+
+  "playbook": {
+    "id": "pb-disable-iam-key",
+    "name": "Disable Compromised IAM Key",
+    "description": "Isolate compromised IAM credentials across AWS accounts",
+    "trigger": "manual | detection_rule",
+    "approval_required": true,
+    "steps": [
+      { "order": 1, "action": "lookup_iam_key", "description": "Retrieve key metadata from AWS IAM" },
+      { "order": 2, "action": "disable_access_key", "description": "Disable the access key", "requires_approval": true },
+      { "order": 3, "action": "notify_slack", "description": "Post to #soc-incidents", "channel": "soc-incidents" },
+      { "order": 4, "action": "create_jira_ticket", "description": "Open IR ticket in Jira", "project": "IR" }
+    ],
+    "created_by": "soc-lead@internal",
+    "last_run": "2026-05-20T09:15:00Z",
+    "run_count": 14
+  },
+
+  "run": {
+    "id": "run-20260521-003",
+    "playbook_id": "pb-disable-iam-key",
+    "incident_id": "inc-20260521-001",
+    "status": "awaiting_approval",
+    "triggered_by": "detection_rule:det-001",
+    "started_at": "2026-05-21T15:05:00Z",
+    "steps": [
+      { "order": 1, "action": "lookup_iam_key", "status": "completed", "output": { "key_id": "AKIAIOSFODNN7EXAMPLE", "user": "deploy-bot", "last_used": "2026-05-21T14:22:00Z" } },
+      { "order": 2, "action": "disable_access_key", "status": "pending_approval", "approver": null },
+      { "order": 3, "action": "notify_slack", "status": "pending" },
+      { "order": 4, "action": "create_jira_ticket", "status": "pending" }
+    ]
+  }
+}

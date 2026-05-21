@@ -1,0 +1,17 @@
+id: det-003
+name: Public Blob Storage - Azure
+description: Blob container with anonymous public read access detected
+mitre_technique: T1530
+mitre_tactic: Collection
+severity: high
+enabled: true
+conditions:
+  source: azure
+  alert_title_contains:
+    - "public access"
+    - "anonymous"
+    - "blob"
+  resource_type: StorageAccount
+actions:
+  - create_incident
+  - notify_channel: soc-high
