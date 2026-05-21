@@ -1,9 +1,9 @@
 import api from "./client";
-import type { Incident, IncidentNote, TimelineEntry } from "@/types";
+import type { Incident, IncidentNote, TimelineEntry, PaginatedResponse } from "@/types";
 
 export async function getIncidents(): Promise<Incident[]> {
-  const { data } = await api.get<Incident[]>("/incidents");
-  return data;
+  const { data } = await api.get<PaginatedResponse<Incident>>("/incidents");
+  return data.items;
 }
 
 export async function getIncident(incidentId: string): Promise<Incident> {

@@ -1,9 +1,9 @@
 import api from "./client";
-import type { Playbook, PlaybookRun } from "@/types";
+import type { Playbook, PlaybookRun, PaginatedResponse } from "@/types";
 
 export async function getPlaybooks(): Promise<Playbook[]> {
-  const { data } = await api.get<Playbook[]>("/playbooks");
-  return data;
+  const { data } = await api.get<PaginatedResponse<Playbook>>("/playbooks");
+  return data.items;
 }
 
 export async function getPlaybook(playbookId: string): Promise<Playbook> {
@@ -42,8 +42,8 @@ export async function cancelRun(
 }
 
 export async function getPlaybookRuns(): Promise<PlaybookRun[]> {
-  const { data } = await api.get<PlaybookRun[]>("/playbooks/runs");
-  return data;
+  const { data } = await api.get<PaginatedResponse<PlaybookRun>>("/playbooks/runs");
+  return data.items;
 }
 
 export async function getPlaybookRun(runId: string): Promise<PlaybookRun> {

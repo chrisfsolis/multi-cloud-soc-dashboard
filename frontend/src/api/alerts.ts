@@ -1,5 +1,5 @@
 import api from "./client";
-import type { Alert } from "@/types";
+import type { Alert, PaginatedResponse } from "@/types";
 
 export interface AlertFilters {
   severity?: string;
@@ -14,8 +14,8 @@ export async function getAlerts(filters?: AlertFilters): Promise<Alert[]> {
   if (filters?.status) params.append("status", filters.status);
   if (filters?.source) params.append("source", filters.source);
   if (filters?.search) params.append("q", filters.search);
-  const { data } = await api.get<Alert[]>("/alerts", { params });
-  return data;
+  const { data } = await api.get<PaginatedResponse<Alert>>("/alerts", { params });
+  return data.items;
 }
 
 export async function getAlert(alertId: string): Promise<Alert> {

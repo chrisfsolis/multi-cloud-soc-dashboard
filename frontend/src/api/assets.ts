@@ -1,9 +1,9 @@
 import api from "./client";
-import type { Alert, Asset } from "@/types";
+import type { Alert, Asset, PaginatedResponse } from "@/types";
 
 export async function getAssets(): Promise<Asset[]> {
-  const { data } = await api.get<Asset[]>("/assets");
-  return data;
+  const { data } = await api.get<PaginatedResponse<Asset>>("/assets");
+  return data.items;
 }
 
 export async function getHighRiskAssets(): Promise<Asset[]> {

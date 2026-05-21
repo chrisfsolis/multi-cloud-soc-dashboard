@@ -1,9 +1,9 @@
 import api from "./client";
-import type { DetectionRule } from "@/types";
+import type { DetectionRule, PaginatedResponse } from "@/types";
 
 export async function getDetections(): Promise<DetectionRule[]> {
-  const { data } = await api.get<DetectionRule[]>("/detections");
-  return data;
+  const { data } = await api.get<PaginatedResponse<DetectionRule>>("/detections");
+  return data.items;
 }
 
 export async function getDetection(ruleId: string): Promise<DetectionRule> {
