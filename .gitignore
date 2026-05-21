@@ -4,3 +4,5 @@ node_modules/
 dist/
 .env
 backend/soc.db
+backend/soc.db-shm
+backend/soc.db-wal
