@@ -1,10 +1,17 @@
-name: frontend-tests
-on: [push,pull_request]
+name: Frontend Tests
+on:
+  push:
+    paths: ['frontend/**']
+  pull_request:
+    paths: ['frontend/**']
 jobs:
- test:
-  runs-on: ubuntu-latest
-  steps:
-   - uses: actions/checkout@v4
-   - uses: actions/setup-node@v4
-     with: {node-version: "20"}
-   - run: cd frontend && npm i && npm run build
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: cd frontend && npm ci
+      - run: cd frontend && npm run lint
+      - run: cd frontend && npm run build
