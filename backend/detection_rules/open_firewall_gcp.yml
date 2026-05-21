@@ -1,0 +1,15 @@
+id: det-002
+name: Open Firewall Rule - GCP
+description: Firewall rule allows ingress from 0.0.0.0/0 on sensitive ports
+mitre_technique: T1562
+mitre_tactic: Defense Evasion
+severity: high
+enabled: true
+conditions:
+  source: gcp
+  category: OPEN_FIREWALL
+  indicator_contains:
+    - "0.0.0.0/0"
+actions:
+  - create_incident
+  - notify_channel: soc-high

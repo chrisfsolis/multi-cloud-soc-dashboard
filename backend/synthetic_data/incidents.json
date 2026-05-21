@@ -1,0 +1,33 @@
+{
+  "_description": "Synthetic incident with correlated alerts, affected assets, and timeline",
+
+  "incident": {
+    "id": "inc-20260521-001",
+    "title": "Coordinated IAM Brute Force — deploy-bot",
+    "severity": "critical",
+    "status": "investigating",
+    "assigned_to": "analyst@soc.internal",
+    "source_providers": ["aws", "azure"],
+    "mitre_tactics": ["Credential Access", "Initial Access"],
+    "correlated_alerts": [
+      { "alert_id": "alt-20260521-a7f3", "source": "aws", "severity": "high", "title": "Unauthorized IAM access from malicious IP" },
+      { "alert_id": "alt-20260521-f8a1", "source": "azure", "severity": "high", "title": "Brute-force attack against Azure AD" }
+    ],
+    "affected_assets": [
+      { "asset_id": "ast-iam-deploy-bot", "type": "IAMUser", "provider": "aws", "risk_score": 92 }
+    ],
+    "detection_rule": "det-001",
+    "created_at": "2026-05-21T14:32:05Z",
+    "updated_at": "2026-05-21T15:10:00Z"
+  },
+
+  "timeline": [
+    { "ts": "2026-05-21T14:22:00Z", "type": "alert", "detail": "First failed login detected (AWS GuardDuty)" },
+    { "ts": "2026-05-21T14:30:00Z", "type": "alert", "detail": "5th failed login — threshold crossed" },
+    { "ts": "2026-05-21T14:32:05Z", "type": "detection", "detail": "Rule det-001 fired, incident auto-created" },
+    { "ts": "2026-05-21T14:35:00Z", "type": "assignment", "detail": "Auto-assigned to analyst@soc.internal (on-call)" },
+    { "ts": "2026-05-21T14:40:00Z", "type": "enrichment", "detail": "IP 198.51.100.44 matched ThreatFeed: Cobalt Strike C2" },
+    { "ts": "2026-05-21T15:00:00Z", "type": "note", "detail": "Analyst: Confirmed malicious — escalating to IR", "actor": "analyst@soc.internal" },
+    { "ts": "2026-05-21T15:05:00Z", "type": "playbook", "detail": "Playbook 'Disable IAM Key' triggered", "run_id": "run-20260521-003" }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "_description": "Synthetic report outputs — incident report and executive summary as rendered markdown",
+
+  "incident_report": {
+    "format": "markdown",
+    "generated_at": "2026-05-21T16:00:00Z",
+    "markdown": "# Incident Report: inc-20260521-001\n\n## Summary\n**Title:** Coordinated IAM Brute Force — deploy-bot\n**Severity:** Critical | **Status:** Investigating\n**Duration:** 1h 28m (ongoing)\n\n## Affected Assets\n| Asset | Provider | Risk Score |\n|-------|----------|------------|\n| deploy-bot (IAM) | AWS | 92 |\n\n## Correlated Alerts (5)\n| Time | Source | Title |\n|------|--------|-------|\n| 14:22 | AWS | Unauthorized IAM access from malicious IP |\n| 14:24 | AWS | Failed console login — deploy-bot |\n| 14:26 | Azure | Brute-force attack against Azure AD |\n| 14:28 | AWS | Unauthorized IAM access — 4th attempt |\n| 14:30 | AWS | Unauthorized IAM access — 5th attempt |\n\n## Response Actions\n- [x] Detection rule det-001 fired\n- [x] Incident auto-created and assigned\n- [x] Threat intel enrichment: IP linked to Cobalt Strike C2\n- [ ] Playbook: Disable IAM Key — awaiting approval\n\n## Analyst Notes\n> Confirmed malicious — escalating to IR\n> — analyst@soc.internal, 15:00 UTC"
+  },
+
+  "executive_summary": {
+    "format": "markdown",
+    "period": "May 2026",
+    "markdown": "# Executive Summary — May 2026\n\n## Key Metrics\n| Metric | Value | Trend |\n|--------|-------|-------|\n| Total Alerts | 1,847 | ↑ 12% |\n| Incidents Created | 42 | ↓ 5% |\n| MTTD | 4.2 min | ↓ improved |\n| MTTR | 3.6 hrs | ↓ improved |\n| False Positive Rate | 18% | ↓ 3pp |\n\n## Provider Breakdown\n- AWS: 892 alerts (48%) — IAM and GuardDuty dominant\n- Azure: 614 alerts (33%) — Sentinel brute-force rules\n- GCP: 341 alerts (19%) — Firewall misconfigurations\n\n## Top Risks\n1. Compromised IAM key `deploy-bot` (risk: 92)\n2. Open firewall rule on GCP prod (risk: 71)\n3. Public blob storage in Azure (risk: 68)"
+  }
+}

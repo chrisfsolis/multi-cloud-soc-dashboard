@@ -1,0 +1,18 @@
+id: det-001
+name: Brute Force - Multi-Cloud IAM
+description: 5+ failed login alerts from same asset within 10 minutes
+mitre_technique: T1110
+mitre_tactic: Credential Access
+severity: critical
+enabled: true
+conditions:
+  alert_title_contains:
+    - "failed login"
+    - "brute-force"
+    - "sign-in failure"
+  threshold: 5
+  window_minutes: 10
+  group_by: asset_id
+actions:
+  - create_incident
+  - notify_channel: soc-critical
