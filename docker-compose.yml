@@ -1,11 +1,16 @@
 services:
-  postgres:
-    image: postgres:16
-  redis:
-    image: redis:7
   backend:
     build: ./backend
-    ports: ["8000:8000"]
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+
   frontend:
     build: ./frontend
-    ports: ["5173:5173"]
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_BASE_URL=http://127.0.0.1:8000/api
+    depends_on:
+      - backend
